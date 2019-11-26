@@ -1,0 +1,19 @@
+
+<div class="col-sm-4">
+    <div class="card">
+        {{ if eq .Params.photos "" }}
+        <img src="/autre.jpg" class="card-img-top" alt="default">
+        {{ else }}
+        <img src="/{{ index .Params.photos 0 }}" class="card-img-top" alt="ok bro">
+        {{ end }}
+        <div class="card-body">
+            {{ if eq .Draft true }}
+            <a><h5 class="card-title">{{ .Title }}</h5></a>
+            {{ else }}
+            <a href="{{ .Permalink }}"><h5 class="card-title">{{ .Title }}</h5></a>
+            {{ end }}
+            <p class="card-text">{{ .Params.Label }}</p>
+            <p class="card-text"><small class="text-muted">{{ printf "%s %s %s %s\n%s:%s" (string (time .Params.when).Weekday) (string (time .Params.when).Day) (string (time .Params.when).Month) (string (time .Params.when).Year) (string (time .Params.when).Hour) (string (time .Params.when).Minute) }}</small></p>
+        </div>
+    </div>
+</div>

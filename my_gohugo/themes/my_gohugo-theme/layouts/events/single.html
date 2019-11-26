@@ -1,0 +1,32 @@
+
+{{ partial "head.html" . }}
+{{ partial "header.html" . }}
+
+<div class="container mt-4 pt-4">
+    <h1> EVENEMENT:  {{ .Title }}</h1>
+    <hr class="deep-orange accent-2 mb-2 mt-0 d-inline-block mx-auto" style="width: 100%;">
+</div>
+
+<div class="card-deck justify-content-center" style="padding: 1%">
+    <div class="row col-sm-4">
+        <div class="card">
+            {{ if eq .Params.photos "" }}
+                <img src="/autre.jpg" class="card-img-top" alt="default">
+                {{ else }}
+                <img src="/{{ index .Params.photos 0 }}" class="card-img-top" alt="ok bro">
+                {{ end }}
+        </div>
+    </div>
+</div>
+{{ if eq .Params.Address "" }}
+    <p class="text-center mt-4">Addresse non-définie</p>
+{{ else }}
+    <p class="text-center mt-4">Addresse : {{ .Params.Address }}</p>
+{{ end }}
+{{ if ne .Params.Description "" }}
+    <p class="text-center mt-4">Description de l'évenement: {{ .Params.Description }}</p>
+{{ end }}
+<div class="text-center mb-5 mt-3">
+    {{ .Content }}
+</div>
+{{ partial "footer.html" . }}

@@ -1,0 +1,87 @@
+<footer class="page-footer font-small unique-color-dark bg-dark">
+
+    <!-- Footer Links -->
+    <hr class="deep-purple accent-2 mb-2 mt-0 d-inline-block mx-auto" style="width: 100%;">
+    <div class="text-center text-md-left" style="padding-top: 1%;">
+        <!-- Grid row -->
+        <div class="row text-center mb-4" style="width: 50%; margin: auto;">
+
+            <!-- Grid column -->
+                <!-- Links -->
+            <div class="row text-center" style="width: 100%; margin: auto;">
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#formContact" data-whatever="@mdo" style="width: auto; margin: auto">Contact</button>
+                <div class="modal fade" id="formContact" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content unique-color-dark bg-dark">
+                            <div class="modal-header unique-color-dark bg-dark">
+                    <!-- Links -->
+                                <h6 class="text-uppercase font-weight-bold">Contact</h6>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+
+                            <div class="wow animated fadeInRight modal-body" data-wow-delay=".2s">
+                                <div class="modal-body">
+                                <form class="shake" role="form" method="post" id="contactForm" name="contact-form" data-toggle="validator">
+                                    <!-- Name -->
+                                    <div class="form-group label-floating">
+                                        <label class="control-label" for="name">Name</label>
+                                        <input class="form-control bg-dark text-white" id="name" type="text" name="name" required data-error="Please enter your name">
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                    <!-- email -->
+                                    <div class="form-group label-floating">
+                                        <label class="control-label" for="email">Email</label>
+                                        <input class="form-control bg-dark text-white" id="email" type="email" name="email" required data-error="Please enter your Email">
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                    <!-- Subject -->
+                                    <div class="form-group label-floating">
+                                        <label class="control-label">Subject</label>
+                                        <input class="form-control bg-dark text-white" id="msg_subject" type="text" name="subject" required data-error="Please enter your message subject">
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                    <!-- Message -->
+                                    <div class="form-group label-floating">
+                                        <label for="message" class="control-label">Message</label>
+                                        <textarea class="form-control bg-dark text-white" rows="3" id="message" name="message" required data-error="Write your message"></textarea>
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                    <!-- Form Submit -->
+                                    <div class="form-submit mt-5">
+                                        <button class="btn btn-common" type="submit" id="form-submit">  Send Message</button>
+                                        <div id="msgSubmit" class="h3 text-center hidden"></div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </form>
+                            </div>
+                                <div>
+                                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d11615.719853009328!2d5.381233803997781!3d43.294788360780146!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xae7aa887281fbbae!2sMairie%20de%20Marseille!5e0!3m2!1sfr!2sfr!4v1568894794091!5m2!1sfr!2sfr" frameborder="0" style="border:0;" width="280" height="300" allowfullscreen="" class="center"></iframe>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3" style="margin: auto;">
+                    <ul class="list-unstyled mt-2">
+                        <button type="button" class="btn btn-primary"><a href="tel:0601934289">06 01 93 42 89</a></button>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- Grid row -->
+
+    </div>
+    <!-- Footer Links -->
+
+    <!-- Copyright -->
+    <div class="footer-copyright text-center py-3">© 2019 Copyright:
+        <a class="text-primary"> PENTEGNO Thomas</a>
+    </div>
+    <!-- Copyright -->
+
+</footer>
+<!-- Footer -->
+</body>
+</html>

@@ -1,0 +1,80 @@
+<!-- Effectue une boucle sur TOUTES les pages du site  {{ range first 10 .Data.Pages }}-->
+<!-- SI la page est un event  {{ if eq .Type "events" }}-->
+<!-- Effectue une boucle sur TOUTES les pages du site  {{ range first 10 .Data.Pages }}-->
+<!--    <img class="card-img-top" src="{{ .Params.photos }}" alt="Card image cap" style="width: auto">
+{{ end }}
+{{ end }}
+{{ end }}
+</div>-->
+
+{{ partial "head.html" . }}
+{{ partial "header.html" . }}
+
+{{ partial "carous.html" }}
+
+<div class="container mt-4 pt-4">
+    <h1>EVENEMENTS IMPORTANT A VENIR</h1>
+    <hr class="deep-orange accent-2 mb-2 mt-0 d-inline-block mx-auto" style="width: 100%;">
+</div>
+
+{{ $evt := .Site.GetPage "/events"}}
+<div class="pt-4 mb-4">
+    <div class="card-deck justify-content-center" style="padding: 1%">
+            {{ $cnt := 0 }}
+            {{ range ($evt.Data.Pages.ByParam "when") }}
+                {{ if eq ((time .Params.when).After now) true }}
+                    {{ if lt $cnt 10 }}
+                    {{ if eq .Params.important true }}
+                    {{ $cnt = add $cnt 1 }}
+                        <div class="row col-sm-4">
+                            <div class="card">
+                                {{ if eq .Params.photos "" }}
+                                <img src="/autre.jpg" class="card-img-top" alt="default">
+                                {{ else }}
+                                <img src="{{.Site.BaseURL}}/{{ index .Params.photos 0 }}" class="card-img-top" alt="ok bro">
+                                {{ end }}
+                                <div class="card-body">
+                                    {{ if eq .Draft true }}
+                                    <a><h5 class="card-title">Events: {{ .Title }}</h5></a>
+                                    {{ else }}
+                                    <a href="{{ .Permalink }}"><h5 class="card-title">{{ .Title }}</h5></a>
+                                    {{ end }}
+                                    <p class="card-text">{{ .Params.Label }}</p>
+                                    <p class="card-text"><small class="text-muted">{{ printf "%s %s %s %s\n%s:%s" (string (time .Params.when).Weekday) (string (time .Params.when).Day) (string (time .Params.when).Month) (string (time .Params.when).Year) (string (time .Params.when).Hour) (string (time .Params.when).Minute) }}</small></p>
+                                    <p class="card-text">Association: {{ .Params.Association }} </p>
+                                </div>
+                            </div>
+                        </div>
+                    {{ end }}
+                    {{end}}
+                {{ end }}
+        {{ end }}
+    </div>
+</div>
+<!--
+<div class="bg-light pt-3 pb-3 pl-3 pr-3">
+    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" style="margin: 10%">
+        <ol class="carousel-indicators">
+            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+        </ol>
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img class="d-block w-100" src="img/Marseille.jpg" alt="First slide">
+                <div class="carousel-caption d-none d-md-block">
+                    <p>{{.Params.Title}}</p>
+                    <p>{{.Params.Label}}</p>
+                    <p>{{.Params.When}}</p>
+                </div>
+            </div>
+        </div>
+        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+-->
+{{ partial "footer.html" . }}

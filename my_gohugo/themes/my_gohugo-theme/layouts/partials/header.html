@@ -1,0 +1,78 @@
+<header>
+    <div class="pos-f-t">
+        <nav class="navbar navbar-dark bg-dark">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="navbar navbar-expand-lg bg-dark">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="{{ .Site.BaseURL }}/">Home <span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="{{ .Site.BaseURL }}/conseil-municipal">Municipal Council</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="{{ .Site.BaseURL }}/associations">Associations</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                                Events
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbardrop">
+                                <a class="dropdown-item" href="{{ .Site.BaseURL }}/events?event=2">All Events</a>
+                                <a class="dropdown-item" href="{{ .Site.BaseURL }}/events?event=0">Upcomming Events</a>
+                                <a class="dropdown-item" href="{{ .Site.BaseURL }}/events?event=1">Archived Events</a>
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="{{ .Site.BaseURL }}/calendar">Calendar</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <div class="collapse bg-dark" id="navbarToggleExternalContent" style="padding-left: auto; width: 10%">
+            <form class="form-inline my-lg-0">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" style="width: 100%;">
+                <button class="btn btn-outline-success my-2" type="submit">Search</button>
+            </form>
+        </div>
+    </div>
+   <!--  <div class="pos-f-t">
+        <div class="navbar bg-dark navbar-dark">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
+        <nav class="collapse w3-sidebar w3-bar-block w3-dark-grey" id="navbar">
+            <ul class="navbar-nav bg-none">
+                <li class="nav-item">
+                    <a class="nav-link w3-hover-blue w3-bar-item" href="#"> Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link w3-hover-blue w3-bar-item" href="#"> Municipal Council</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link navbar-nav w3-hover-blue w3-bar-item" href="#"> Associations</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link w3-hover-blue w3-bar-item" href="#" data-toggle="collapse" data-target="#eventList" aria-controls="eventList" aria-expanded="false" aria-label="Toggle navigation">Events</a>
+                    <div class="bg-secondary collapse" id="eventList">
+                        <a class="nav-link w3-hover-blue w3-bar-item" href="#"> Upcomming Events</a>
+                        <a class="nav-link w3-hover-blue w3-bar-item" href="#"> Archived Events</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link w3-hover-blue w3-bar-item" href="#"> Calendar</a>
+                </li>
+            </ul>
+        </nav>
+    </div> -->
+</header>
+<body style="background: #e0e0e0">

@@ -1,0 +1,34 @@
+{{ partial "head.html" . }}
+{{ partial "header.html" . }}
+    
+
+
+<div class="container mt-4 pt-3 mb-3">
+    <h1>LISTE DES ASSOCIATIONS</h1>
+    <hr class="deep-orange accent-2 mb-2 mt-0 d-inline-block mx-auto" style="width: 100%;">
+</div>
+
+<div class="bg-light pt-4 mb-4">
+        <div class="card-deck justify-content-center" style="padding: 1%">
+                {{ range .Data.Pages }} <!-- Effectue une boucle sur TOUTES les pages du site-->
+                    {{ if eq .Section "associations" }}
+            <div class="row col-sm-4">
+                <div class="card">
+                        {{ if eq .Params.photos "" }}
+                        <img src="/autre.jpg" class="card-img-top" alt="default">
+                        {{ else }}
+                        <img src="/{{ index .Params.photos 0 }}" class="card-img-top" alt="ok bro">
+                        {{ end }}
+                    <div class="card-body">
+                        <a href="{{ .Permalink }}"><h5 class="card-title">{{ .Params.Title }}</h5></a>
+                        <p class="card-text">{{ .Params.Domain }}</p>
+                    </div>
+                </div>
+            </div>
+                    {{ end }}
+                {{ end }}
+        </div>
+</div>
+
+
+{{ partial "footer.html" . }}

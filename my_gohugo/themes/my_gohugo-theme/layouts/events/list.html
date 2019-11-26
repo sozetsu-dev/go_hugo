@@ -1,0 +1,102 @@
+
+{{ partial "head.html" . }}
+{{ partial "header.html" . }}
+
+<script>
+
+console.log("frere");
+
+function $_GET(param) {
+    var vars = {};
+    window.location.href.replace( location.hash, '' ).replace(
+        /[?&]+([^=&]+)=?([^&]*)?/gi, // regexp
+        function( m, key, value ) { // callback
+            vars[key] = value !== undefined ? value : '';
+        }
+    );
+
+    if ( param ) {
+        return vars[param] ? vars[param] : null;
+    }
+    return vars;
+}
+
+$(document).ready(function () {
+var event = decodeURI( $_GET( 'event' ) );
+console.log(event);
+
+switch (event) {
+    case '0':
+        $("#future").addClass("active");
+        $("#upcoming").addClass("active show");
+        break;
+    case '1':
+        $("#past").addClass("active");
+        $("#archived").addClass("active show");
+        break;
+    case '2':
+        $("#sang").addClass("active");
+        $("#all").addClass("active show");
+        break;
+}
+
+$('#list_event').click(function (){
+    $('#event_past').toggle();
+    if ($(this).text() == 'Voir les anciens Events')
+        $(this).text('Cacher les anciens Events');
+    else
+        $(this).text('Voir les anciens Events');
+})
+
+});
+</script>
+
+
+<div class="container mt-4 pt-4">
+        <h1>EVENEMENTS</h1>
+        <hr class="deep-orange accent-2 mb-2 mt-0 d-inline-block mx-auto" style="width: 100%;">
+    </div>
+
+<div class="container-fluid pt-3 mb-5" id="events">
+    <div class="justify-content-center mt-4">
+        <ul class="nav nav-pills mb-3 justify-content-center" id="pills-tab" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link" id="future" data-toggle="pill" href="#upcoming" role="tab" aria-controls="pills-home" aria-selected="true">Upcoming Events</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="past" data-toggle="pill" href="#archived" role="tab" aria-controls="pills-profile" aria-selected="false">Archived Events</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="sang" data-toggle="pill" href="#all" role="tab" aria-controls="pills-contact" aria-selected="false">All Events</a>
+            </li>
+        </ul>
+    </div>
+    <div class="tab-content" id="pills-tabContent">
+        <div class="tab-pane fade" id="all" role="tabpanel" aria-labelledby="pills-home-tab">
+            <div class="row">
+                {{ range .Data.Pages.ByParam "when" }}
+                    {{ partial "events.html" . }}
+                {{ end }}
+            </div>
+        </div>
+        <div class="tab-pane fade" id="upcoming" role="tabpanel" aria-labelledby="pills-profile-tab">
+            <div class="row">
+                {{ range .Pages.ByParam "when" }}
+                    {{ if eq ((time .Params.when).After now) true }}
+                        {{ partial "events.html" . }}
+                    {{ end }}
+                {{ end }}
+            </div>
+        </div>
+        <div class="tab-pane fade" id="archived" role="tabpanel" aria-labelledby="pills-contact-tab">
+            {{ range .Pages.ByParam "when" }}
+                {{ if eq ((time .Params.when).Before now) true }}
+                    {{ partial "events.html" . }}
+                {{ end }}
+            {{ end }}
+        </div>
+    </div>
+</div>
+
+
+{{ partial "footer.html" . }}

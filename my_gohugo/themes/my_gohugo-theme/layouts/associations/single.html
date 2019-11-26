@@ -1,0 +1,98 @@
+
+{{ partial "head.html" . }}
+{{ partial "header.html" . }}
+
+<script>
+    $(document).ready(function () {
+    
+    console.log("oui");
+    
+    function $_GET(param) {
+        var vars = {};
+        window.location.href.replace( location.hash, '' ).replace(
+            /[?&]+([^=&]+)=?([^&]*)?/gi, // regexp
+            function( m, key, value ) { // callback
+                vars[key] = value !== undefined ? value : '';
+            }
+        );
+    
+        if ( param ) {
+            return vars[param] ? vars[param] : null;
+        }
+        return vars;
+    }
+    
+    var event = decodeURI( $_GET( 'event' ) );
+    console.log(event);
+    
+    switch (event) {
+        case '0':
+            $("#future").addClass("active");
+            $("#upcoming").addClass("active show");
+            break;
+        case '1':
+            $("#past").addClass("active");
+            $("#archived").addClass("active show");
+            break;
+        case '2':
+            $("#sang").addClass("active");
+            $("#all").addClass("active show");
+            break;
+    }
+    
+    $('#list_event').click(function (){
+        $('#event_past').toggle();
+        if ($(this).text() == 'Voir les anciens Events')
+            $(this).text('Cacher les anciens Events');
+        else
+            $(this).text('Voir les anciens Events');
+    })
+    });
+</script>
+
+<div class="container mt-4 pt-4">
+    <h1> Association:  {{ .Title }}</h1>
+    <hr class="deep-orange accent-2 mb-2 mt-0 d-inline-block mx-auto" style="width: 100%;">
+</div>
+<h3 class="font-weight-bold text-muted text-center mt-4">Domaine : {{ .Params.Domain }}</h3>
+
+<div class="card-deck justify-content-center" style="padding: 1%">
+    <div class="row col-sm-4">
+        <div class="card">
+            {{ if eq .Params.photos "" }}
+            <img src="/autre.jpg" class="card-img-top" alt="default">
+            {{ else }}
+            <img src="/{{ index .Params.photos 0 }}" class="card-img-top" alt="ok bro">
+            {{ end }}
+        </div>
+    </div>
+
+</div>
+<p class="text-center mt-4">Addresse : {{ .Params.Address }}</p>
+<p class="text-center mt-4"> Description: {{ .Params.Description }}</p>
+<div class="text-center mb-5 mt-3">
+    {{ .Content }}
+</div>
+
+<div class="container mt-4 pt-4">
+    <h1>EVENEMENTS LIE A L'ASSOCIATION</h1>
+    <hr class="deep-orange accent-2 mb-2 mt-0 d-inline-block mx-auto" style="width: 100%;">
+</div>
+{{ $asso := .Title }}
+
+<div class="justify-content-center" style="padding-left: 43%; margin-bottom: 2%">
+    <button id="list_event" type="button" class="btn">Voir les anciens Events</button>
+    <br><br>
+    {{ $event := .Site.GetPage "events" }}
+    {{ range $event.Data.Pages.ByParam "when" }}
+        {{ if eq .Params.association $asso }}
+            {{ if eq ((time .Params.when).After now) false }}
+                <p id="event_past" style="display: none">{{ string (time .Params.when).Day }} {{ string (time .Params.when).Month }} {{ string (time .Params.when).Year }} {{ string (time .Params.when).Hour }}:{{ string (time .Params.when).Minute }}:{{ string (time .Params.when).Second }} -> <a href="{{ .Permalink }}"> {{ .Title }}</a></p>
+            {{ else }}
+                <p>{{ string (time .Params.when).Day }} {{ string (time .Params.when).Month }} {{ string (time .Params.when).Year }} {{ string (time .Params.when).Hour }}:{{ string (time .Params.when).Minute }}:{{ string (time .Params.when).Second }} -> <a href="{{ .Permalink }}"> {{ .Title }}</a></p>
+            {{ end }}
+        {{ end }}
+    {{ end }}
+</div>
+
+{{ partial "footer.html" . }}

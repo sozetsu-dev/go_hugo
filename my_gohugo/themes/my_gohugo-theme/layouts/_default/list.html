@@ -1,0 +1,26 @@
+
+{{ partial "head.html" . }}
+{{ partial "header.html" . }}
+
+{{ range .Data.Pages }} <!-- Effectue une boucle sur TOUTES les pages du site-->  
+    {{ if eq .Type "events" }}<!-- SI la page est un event  -->
+        {{ range .Data.Pages }} <!-- Effectue une boucle sur TOUTES les pages du site-->  
+        
+        {{ end }}
+    {{ end }}
+
+    {{ if eq .Type "associations" }}<!-- SI la page est un associations  -->
+        {{ range .Data.Pages }} <!-- Effectue une boucle sur TOUTES les pages du site-->
+        <div>
+            {{ partial "associations.html" }}
+        </div>
+        {{ end }}
+
+    {{ end}}
+
+
+
+{{ end }}
+
+
+{{ partial "footer.html" . }}
